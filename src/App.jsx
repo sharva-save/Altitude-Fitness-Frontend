@@ -12,7 +12,7 @@ import AdminDashboard from './components/admin/AdminDashboard';
 import MemberList from './components/admin/MemberList';
 import ExpiringPage from './components/admin/ExpiringPage';
 import UserDashboard from './components/user/UserDashboard';
-import FeeHistory from './components/user/FeeHistory';
+import fetchHistory from './components/user/Feehistory'
 
 function ProtectedRoute({ children, role }) {
   const { user, loading } = useAuth();
