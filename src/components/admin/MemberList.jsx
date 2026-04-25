@@ -2,7 +2,7 @@ import React,{ useEffect, useState, useCallback } from 'react';
 import api from '../../utils/api';
 import { format, differenceInDays } from 'date-fns';
 import toast from 'react-hot-toast';
-import { AddMemberModal, EditMemberModal, RenewModal } from './MemberForm';
+import { AddMemberModal, EditMemberModal, RenewModal } from './Memberform';
 import MemberDetailModal from './MemberDetailModal';
 
 export default function MemberList() {
