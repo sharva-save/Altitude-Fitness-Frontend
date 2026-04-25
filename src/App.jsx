@@ -6,13 +6,13 @@ import React from 'react';
 
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import {VerifyEmail,AdminRegister} from './components/auth/VerifyEmail '
+import {VerifyEmail,AdminRegister} from './components/auth/VerifyEmail'
 import Layout from './components/shared/Layout';
 import AdminDashboard from './components/admin/AdminDashboard';
 import MemberList from './components/admin/MemberList';
 import ExpiringPage from './components/admin/ExpiringPage';
 import UserDashboard from './components/user/UserDashboard';
-import fetchHistory from './components/user/Feehistory'
+import FeeHistory from './components/user/Feehistory'
 
 function ProtectedRoute({ children, role }) {
   const { user, loading } = useAuth();

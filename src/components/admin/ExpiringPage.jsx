@@ -2,7 +2,7 @@ import React,{ useEffect, useState, useCallback } from 'react';
 import api from '../../utils/api';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
-import { RenewModal } from './MemberForm';
+import { RenewModal } from './Memberform';
 
 export default function ExpiringPage() {
   const [members, setMembers] = useState([]);
