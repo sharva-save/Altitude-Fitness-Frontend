@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../utils/api';
 import toast from 'react-hot-toast';
@@ -22,7 +22,7 @@ export default function Register() {
         name: form.name,
         email: form.email,
         password: form.password,
-        phone: form.phone
+        phone: form.phone,
       });
       if (res.data.success) {
         setDone(true);
@@ -39,16 +39,28 @@ export default function Register() {
     return (
       <div className="auth-page">
         <div className="auth-card animate-fade" style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 64, marginBottom: 20 }}>📧</div>
+          <div style={{ fontSize: 56, marginBottom: 16 }}>📧</div>
           <h2 className="auth-title">Check your inbox!</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.7, marginBottom: 24 }}>
-            We sent a verification link to <strong style={{ color: 'var(--text-primary)' }}>{form.email}</strong>.
-            Click the link to activate your account.
+            We sent a verification link to{' '}
+            <strong style={{ color: 'var(--text-primary)', wordBreak: 'break-all' }}>
+              {form.email}
+            </strong>
+            . Click the link to activate your account.
           </p>
           <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>
             Didn't receive it?{' '}
             <button
-              style={{ background: 'none', border: 'none', color: 'var(--accent-green)', cursor: 'pointer', fontWeight: 600 }}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--accent-green)',
+                cursor: 'pointer',
+                fontWeight: 600,
+                fontSize: 13,
+                padding: 0,
+                minHeight: 44,   /* touch-friendly tap target */
+              }}
               onClick={async () => {
                 try {
                   await api.post('/auth/resend-verification', { email: form.email });
@@ -62,7 +74,10 @@ export default function Register() {
             </button>
           </p>
           <div style={{ marginTop: 24 }}>
-            <Link to="/login" style={{ color: 'var(--accent-green)', textDecoration: 'none', fontSize: 14, fontWeight: 600 }}>
+            <Link
+              to="/login"
+              style={{ color: 'var(--accent-green)', textDecoration: 'none', fontSize: 14, fontWeight: 600 }}
+            >
               ← Back to Login
             </Link>
           </div>
@@ -85,31 +100,73 @@ export default function Register() {
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label className="input-label">Full Name</label>
-            <input className="input-field" type="text" placeholder="John Doe"
-              value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required />
-          </div>
-          <div className="input-group">
-            <label className="input-label">Email Address</label>
-            <input className="input-field" type="email" placeholder="you@example.com"
-              value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} required />
-          </div>
-          <div className="input-group">
-            <label className="input-label">Phone (optional)</label>
-            <input className="input-field" type="tel" placeholder="+91 98765 43210"
-              value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} />
-          </div>
-          <div className="input-group">
-            <label className="input-label">Password</label>
-            <input className="input-field" type="password" placeholder="Min. 6 characters"
-              value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} required />
-          </div>
-          <div className="input-group">
-            <label className="input-label">Confirm Password</label>
-            <input className="input-field" type="password" placeholder="Repeat password"
-              value={form.confirmPassword} onChange={e => setForm({ ...form, confirmPassword: e.target.value })} required />
+            <input
+              className="input-field"
+              type="text"
+              placeholder="John Doe"
+              value={form.name}
+              onChange={e => setForm({ ...form, name: e.target.value })}
+              autoComplete="name"
+              required
+            />
           </div>
 
-          <button className="btn btn-primary btn-lg" style={{ width: '100%', marginTop: 8 }} disabled={loading}>
+          <div className="input-group">
+            <label className="input-label">Email Address</label>
+            <input
+              className="input-field"
+              type="email"
+              placeholder="you@example.com"
+              value={form.email}
+              onChange={e => setForm({ ...form, email: e.target.value })}
+              autoComplete="email"
+              required
+            />
+          </div>
+
+          <div className="input-group">
+            <label className="input-label">Phone (optional)</label>
+            <input
+              className="input-field"
+              type="tel"
+              placeholder="+91 98765 43210"
+              value={form.phone}
+              onChange={e => setForm({ ...form, phone: e.target.value })}
+              autoComplete="tel"
+            />
+          </div>
+
+          <div className="input-group">
+            <label className="input-label">Password</label>
+            <input
+              className="input-field"
+              type="password"
+              placeholder="Min. 6 characters"
+              value={form.password}
+              onChange={e => setForm({ ...form, password: e.target.value })}
+              autoComplete="new-password"
+              required
+            />
+          </div>
+
+          <div className="input-group">
+            <label className="input-label">Confirm Password</label>
+            <input
+              className="input-field"
+              type="password"
+              placeholder="Repeat password"
+              value={form.confirmPassword}
+              onChange={e => setForm({ ...form, confirmPassword: e.target.value })}
+              autoComplete="new-password"
+              required
+            />
+          </div>
+
+          <button
+            className="btn btn-primary btn-lg"
+            style={{ width: '100%', marginTop: 8 }}
+            disabled={loading}
+          >
             {loading ? 'Creating Account...' : 'Create Account →'}
           </button>
         </form>

@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -51,6 +51,7 @@ export default function Login() {
               placeholder="you@example.com"
               value={form.email}
               onChange={e => setForm({ ...form, email: e.target.value })}
+              autoComplete="email"
               required
             />
           </div>
@@ -63,11 +64,16 @@ export default function Login() {
               placeholder="••••••••"
               value={form.password}
               onChange={e => setForm({ ...form, password: e.target.value })}
+              autoComplete="current-password"
               required
             />
           </div>
 
-          <button className="btn btn-primary btn-lg" style={{ width: '100%', marginTop: 8 }} disabled={loading}>
+          <button
+            className="btn btn-primary btn-lg"
+            style={{ width: '100%', marginTop: 8 }}
+            disabled={loading}
+          >
             {loading ? 'Signing in...' : 'Sign In →'}
           </button>
         </form>
