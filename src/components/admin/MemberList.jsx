@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { AddMemberModal, EditMemberModal, RenewModal } from './Memberform';
 import MemberDetailModal from './Memberdetailmodal';
 
-/* ── Responsive CSS ── */
+
 const CSS = `
   /* Header */
   .ml-header {
